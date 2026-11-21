@@ -97,8 +97,10 @@ function val(x, t) {
   } catch (e) { return 0; }
 }
 function vec(k, t) {
-  const v = Array.isArray(k) ? k : k && (k.post || k.pre || k.vector);
-  return (v || [0, 0, 0]).map((x) => val(x, t));
+  let v = Array.isArray(k) ? k : k && typeof k === "object" ? k.post || k.pre || k.vector : k;
+  if (v === undefined || v === null) v = [0, 0, 0];
+  if (!Array.isArray(v)) v = [v, v, v];          // giá trị đơn (vd. scale: 1)
+  return v.map((x) => val(x, t));
 }
 function sample(ch, t, len, loop) {
   if (ch == null) return null;

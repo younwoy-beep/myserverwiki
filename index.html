@@ -8,127 +8,113 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
-:root{--stone:#12100e;--iron:#1d1916;--gold:#c8a04a;--gold2:#8f6d2a;--blood:#7a1d28;--vellum:#e8d9b5;--ink:#2a1c10;--mist:#b9ab8c}
+:root{--bg:#0a0d17;--panel:#131a33;--panel2:#1a2347;--line:#2a3664;--text:#e8ecff;--mute:#8f9bc6;--gold:#f4c453;--azure:#58cbff;--ac:#f4c453}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:radial-gradient(ellipse at 50% -10%,#2b2018 0,var(--stone) 60%) fixed;color:var(--vellum);font:18px/1.7 Spectral,Georgia,serif}
-h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:700;margin:0;line-height:1.15}
-.wrap{max-width:860px;margin:0 auto;padding:0 20px}
-.hero{text-align:center;padding:64px 20px 36px;border-bottom:3px double var(--gold2)}
-.hero h1{font-size:clamp(2.6rem,8vw,4.6rem);color:var(--gold);text-shadow:0 2px 0 #000,0 0 28px rgba(200,160,74,.35);letter-spacing:.02em}
-.hero p{max-width:34em;margin:14px auto 0;color:var(--mist);font-style:italic}
-.meter{max-width:520px;margin:28px auto 0}
-.bar{height:14px;border:2px solid var(--gold2);background:#0a0807;border-radius:2px;overflow:hidden}
-.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--blood),var(--gold));transition:width .6s}
-.meter span{display:block;margin-top:8px;font-family:"Cormorant Garamond",serif;font-size:1.25rem;color:var(--gold)}
-nav{position:sticky;top:0;z-index:5;background:rgba(18,16,14,.94);border-bottom:1px solid var(--gold2);display:flex;justify-content:center;gap:28px;padding:10px;font-family:"Cormorant Garamond",serif;font-size:1.2rem;font-weight:700}
-nav a{color:var(--gold);text-decoration:none;padding:2px 4px}
-nav a:hover,nav a:focus-visible{color:#fff;outline:1px solid var(--gold);outline-offset:3px}
-section{padding:48px 0 12px}
-h2{font-size:2.2rem;color:var(--gold);text-align:center;margin-bottom:6px}
-h2::before,h2::after{content:"❖";font-size:.9rem;color:var(--gold2);margin:0 .7em;vertical-align:middle}
-.lede{text-align:center;color:var(--mist);margin:0 auto 34px;max-width:32em;font-style:italic}
-/* Con đường */
-#stages{list-style:none;margin:0;padding:0 0 0 38px;position:relative}
-#stages::before{content:"";position:absolute;left:25px;top:20px;bottom:20px;width:6px;background:repeating-linear-gradient(180deg,var(--gold2) 0 14px,transparent 14px 22px);opacity:.7}
-.st{position:relative;margin:0 0 22px}
-.seal{position:absolute;left:-52px;top:10px;width:54px;height:54px;border-radius:50%;display:grid;place-items:center;font-size:1.6rem;background:var(--iron);border:3px solid var(--gold2);box-shadow:0 0 0 4px var(--stone);filter:grayscale(.9) brightness(.7)}
-.st button{all:unset;display:block;width:100%;cursor:pointer;background:linear-gradient(180deg,#26201b,#1b1714);border:2px solid #4a3a22;border-left:6px solid var(--gold2);padding:14px 20px 14px 18px;box-sizing:border-box}
-.st button:hover,.st button:focus-visible{border-color:var(--gold);outline:2px solid var(--gold);outline-offset:2px}
-.st h3{font-size:1.55rem;color:#f2e4be}
-.st small{color:var(--mist);font-style:italic}
-.st .tag{float:right;font-family:"Cormorant Garamond",serif;font-weight:700;color:var(--gold2);font-size:1.05rem}
-.seal img{width:34px;height:34px;image-rendering:pixelated}
-.st.done .seal{filter:none;background:#3a2c14;border-color:#f1d27c}
-.st.done .seal::after{content:"✔";position:absolute;right:-8px;bottom:-8px;width:24px;height:24px;border-radius:50%;background:var(--gold);color:var(--ink);font-size:.95rem;display:grid;place-items:center;border:2px solid var(--stone)}
-.st.done button{border-left-color:var(--gold)}
-.st.done .tag{color:var(--gold)}
-.st.now .seal{filter:none;border-color:var(--gold);animation:glow 2.4s ease-in-out infinite}
-.st.now button{border-color:var(--gold);border-left-color:var(--blood);background:linear-gradient(180deg,#33261b,#221a14)}
-.st.lock button{opacity:.62}
-@keyframes glow{50%{box-shadow:0 0 0 4px var(--stone),0 0 26px 6px rgba(200,160,74,.65)}}
-@media (prefers-reduced-motion:reduce){.st.now .seal{animation:none}html{scroll-behavior:auto}.bar i{transition:none}}
-/* Nhánh phụ */
-#side{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
-.hunt{border:2px solid #4a3a22;background:var(--iron);padding:14px 16px}
-.hunt h3{font-size:1.25rem;color:var(--gold)}
-.hunt p{margin:4px 0 0;font-size:.98rem}
-.hunt em{display:block;margin-top:8px;font-size:.88rem;color:var(--mist)}
-.hunt.lock{opacity:.5}
-.hunt.open{border-color:var(--gold2)}
-/* Luật */
-.law{background:var(--vellum);color:var(--ink);padding:26px 30px;border:3px double var(--blood);box-shadow:inset 0 0 60px rgba(120,80,30,.25)}
-.law h3{color:var(--blood);font-size:1.5rem;margin:18px 0 4px}
-.law h3:first-child{margin-top:0}
-.law p,.law li{margin:4px 0}
-.law ul{padding-left:22px}
-footer{text-align:center;padding:40px 20px 60px;color:var(--mist);font-size:.92rem}
-footer button{all:unset;cursor:pointer;color:var(--gold);text-decoration:underline}
-/* Hồ sơ boss */
-dialog{width:min(640px,94vw);max-height:90vh;overflow:auto;padding:0;border:3px double var(--blood);background:var(--vellum);color:var(--ink);box-shadow:0 0 0 2px #000,0 20px 80px #000}
-dialog::backdrop{background:rgba(5,3,2,.8)}
-.dh{display:flex;gap:18px;align-items:center;padding:24px 30px 14px;border-bottom:2px solid var(--gold2);background:linear-gradient(180deg,#d8c598,var(--vellum))}
-.dh h3{font-size:2.1rem;color:var(--blood)}
-.dh img{width:72px;height:72px;flex:none;image-rendering:pixelated;filter:drop-shadow(0 3px 0 rgba(0,0,0,.35))}
-.sum{display:flex;gap:14px;align-items:center;margin-top:4px}
-.sum img{width:52px;height:52px;flex:none;image-rendering:pixelated;background:rgba(42,28,16,.1);border:2px solid var(--gold2);padding:4px}
-.dh small{font-style:italic}
-.db{padding:6px 30px 26px}
-.db h4{font-family:"Cormorant Garamond",serif;font-size:1.3rem;color:var(--blood);margin:20px 0 2px}
-.db p{margin:2px 0}
-.db .lore{font-style:italic;font-size:1.08rem}
+html,body{height:100%}
+body{margin:0;color:var(--text);font:17px/1.65 Spectral,Georgia,serif;overflow:hidden;
+ background:radial-gradient(1100px 560px at 15% -12%,#1d2a63 0,transparent 62%),radial-gradient(800px 480px at 105% 0,#3b1c52 0,transparent 60%),var(--bg)}
+h1,h2,h3,h4{font-family:"Cormorant Garamond",Georgia,serif;margin:0;line-height:1.15}
+button{font:inherit;color:inherit}
+.top{height:64px;display:flex;align-items:center;gap:20px;padding:0 22px;border-bottom:1px solid var(--line);background:rgba(10,13,23,.8);backdrop-filter:blur(6px)}
+.top h1{font-size:1.9rem;color:var(--gold);white-space:nowrap;letter-spacing:.01em}
+.meter{flex:1;max-width:420px;margin-left:auto}
+.bar{height:8px;border-radius:99px;background:#0d1226;border:1px solid var(--line);overflow:hidden}
+.bar i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#7a5cff,var(--azure),var(--gold));transition:width .6s}
+.meter span{display:block;font-size:.82rem;color:var(--mute);margin-top:3px;text-align:right}
+.reset{all:unset;cursor:pointer;color:var(--mute);font-size:.85rem;text-decoration:underline;white-space:nowrap}
+.reset:hover{color:var(--text)}
+.app{display:grid;grid-template-columns:268px 1fr;height:calc(100% - 64px)}
+#tabs{overflow:auto;padding:18px 14px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:6px;background:rgba(10,13,23,.45)}
+.tab{all:unset;box-sizing:border-box;cursor:pointer;display:grid;grid-template-columns:34px 1fr auto;align-items:center;gap:8px;padding:10px 12px;border-radius:12px;border:1px solid transparent;color:var(--mute)}
+.tab b{font:700 1.12rem "Cormorant Garamond",serif;color:var(--text)}
+.tab em{font-style:normal;font-size:.8rem;background:#0d1226;border:1px solid var(--line);border-radius:99px;padding:0 9px}
+.tab em:empty{display:none}
+.tab .e{font-size:1.35rem;text-align:center}
+.tab:hover,.tab:focus-visible{background:var(--panel);outline:none;border-color:var(--line)}
+.tab.on{background:linear-gradient(90deg,color-mix(in srgb,var(--c) 22%,transparent),transparent);border-color:color-mix(in srgb,var(--c) 55%,transparent)}
+.tab.on em{color:var(--c);border-color:var(--c)}
+.tabs-h{margin:14px 6px 2px;font-size:.78rem;color:var(--mute)}
+main{display:flex;flex-direction:column;min-width:0;min-height:0}
+.chead{padding:16px 26px 8px}
+.chead h2{font-size:2rem;color:var(--ac)}
+.chead p{margin:2px 0 0;color:var(--mute);font-size:.95rem;max-width:56em}
+#canvas{flex:1;overflow:auto;position:relative;cursor:default;
+ background-image:linear-gradient(rgba(120,140,220,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(120,140,220,.06) 1px,transparent 1px);background-size:40px 40px}
+#canvas.grab{cursor:grabbing}
+#tree{position:relative}
+#edges{position:absolute;inset:0;pointer-events:none}
+.ed{fill:none;stroke:var(--line);stroke-width:3;stroke-dasharray:6 8}
+.ed.done{stroke:var(--gold);stroke-dasharray:none;filter:drop-shadow(0 0 5px rgba(244,196,83,.55))}
+.ed.now{stroke:var(--azure);animation:flow 1s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-14}}
+.node{all:unset;box-sizing:border-box;position:absolute;width:140px;text-align:center;cursor:pointer}
+.tile{position:relative;width:76px;height:76px;margin:0 auto;border-radius:20px;display:grid;place-items:center;font-size:2rem;
+ background:linear-gradient(150deg,var(--panel2),#0e1430);border:3px solid var(--line);box-shadow:0 6px 18px rgba(0,0,0,.45)}
+.tile img{width:44px;height:44px;image-rendering:pixelated}
+.nm{display:block;margin-top:8px;font:700 1.08rem/1.15 "Cormorant Garamond",serif;color:var(--text)}
+.sb{display:block;font-size:.76rem;color:var(--mute)}
+.node:hover .tile,.node:focus-visible .tile{border-color:#fff;transform:translateY(-2px)}
+.node.done .tile{border-color:var(--gold);box-shadow:0 0 0 3px rgba(244,196,83,.15),0 0 22px rgba(244,196,83,.35)}
+.node.done .tile::after{content:"✔";position:absolute;right:-9px;bottom:-9px;width:24px;height:24px;border-radius:50%;background:var(--gold);color:#241a02;font-size:.9rem;font-weight:700;display:grid;place-items:center;border:2px solid var(--bg)}
+.node.now .tile{border-color:var(--azure);animation:glow 2.2s ease-in-out infinite}
+.node.open .tile{border-color:var(--ac)}
+.node.lock{opacity:.5}.node.lock .tile{filter:grayscale(.85)}
+.node.gate .tile{width:56px;height:56px;border-radius:50%;border-style:dashed}
+.node.gate .tile img{width:32px;height:32px}
+.node.gate .nm{font-size:.92rem;font-weight:600;color:var(--mute)}
+.d3{position:absolute;left:-8px;top:-8px;font:700 .68rem Spectral,serif;background:var(--ac);color:#10121f;border-radius:99px;padding:0 6px}
+@keyframes glow{50%{box-shadow:0 0 0 4px rgba(88,203,255,.15),0 0 28px 4px rgba(88,203,255,.55)}}
+@media (prefers-reduced-motion:reduce){.node.now .tile,.ed.now{animation:none}.bar i{transition:none}}
+.guide{max-width:760px;margin:6px 26px 40px;display:grid;gap:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 22px}
+.card h3{color:var(--gold);font-size:1.4rem;margin-bottom:4px}
+.card p,.card ul{margin:4px 0}.card ul{padding-left:20px}
+@media (max-width:820px){
+ body{overflow:auto}.top{height:auto;flex-wrap:wrap;padding:10px 14px}.top h1{font-size:1.5rem}.meter{max-width:none;flex-basis:100%;margin:0}
+ .app{grid-template-columns:1fr;height:auto}#tabs{flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid var(--line);padding:10px}
+ .tab{grid-template-columns:auto auto auto;white-space:nowrap}.tabs-h{display:none}
+ #canvas{height:70vh}.chead{padding:12px 16px 6px}.guide{margin:6px 14px 30px}}
+/* Hồ sơ */
+dialog{width:min(660px,94vw);max-height:90vh;overflow:auto;padding:0;border:1px solid var(--line);border-radius:16px;background:var(--panel);color:var(--text);box-shadow:0 30px 100px #000}
+dialog::backdrop{background:rgba(4,6,14,.82)}
+.dh{display:flex;gap:18px;align-items:center;padding:22px 28px 14px;background:linear-gradient(180deg,var(--panel2),var(--panel));border-bottom:1px solid var(--line)}
+.dh h3{font-size:2rem;color:var(--gold)}.dh small{color:var(--mute);font-style:italic}
+.dh img{width:72px;height:72px;flex:none;image-rendering:pixelated}
+.db{padding:6px 28px 26px}
+.db h4{font-size:1.25rem;color:var(--azure);margin:18px 0 2px}
+.db p{margin:2px 0}.db .lore{font-style:italic;color:#cdd5f5}
+.sum{display:flex;gap:14px;align-items:center}
+.sum img{width:52px;height:52px;flex:none;image-rendering:pixelated;background:#0d1226;border:1px solid var(--line);border-radius:10px;padding:5px}
 .v3d{margin:14px 0 4px}
-#vhost{height:300px;background:radial-gradient(circle at 50% 38%,#4b3b29,#15100b 75%);border:2px solid var(--gold2);position:relative}
-.v3d small{display:block;text-align:center;margin-top:4px;font-style:italic}
+#vhost{height:300px;border-radius:12px;border:1px solid var(--line);background:radial-gradient(circle at 50% 38%,#26305f,#0b0f22 78%)}
+.v3d small{display:block;text-align:center;margin-top:4px;color:var(--mute);font-style:italic}
 .vtabs{display:flex;gap:8px;justify-content:center;margin-top:8px;flex-wrap:wrap}
-.vtab{font:700 1rem "Cormorant Garamond",serif;padding:4px 14px;cursor:pointer;border:2px solid var(--blood);background:transparent;color:var(--blood)}
-.vtab.on{background:var(--blood);color:#f4e6c2}
-.v3err{padding:60px 20px;text-align:center;color:#d9c69a}
-.act{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
-.act button{font:700 1.15rem "Cormorant Garamond",serif;padding:10px 22px;cursor:pointer;border:2px solid var(--blood);background:var(--blood);color:#f4e6c2}
-.act button.ghost{background:transparent;color:var(--blood)}
-.act button:hover,.act button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.vtab{cursor:pointer;padding:3px 14px;border-radius:99px;border:1px solid var(--line);background:transparent;color:var(--mute)}
+.vtab.on{background:var(--azure);border-color:var(--azure);color:#06101c;font-weight:600}
+.v3err{padding:60px 20px;text-align:center;color:var(--mute)}
+.act{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+.act button{cursor:pointer;padding:9px 22px;border-radius:10px;border:1px solid var(--gold);background:var(--gold);color:#241a02;font-weight:600}
+.act button.ghost{background:transparent;color:var(--gold)}
+.act button:hover,.act button:focus-visible{outline:2px solid #fff;outline-offset:2px}
 </style>
 </head>
 <body>
-<header class="hero">
+<header class="top">
   <h1>Con Đường Armageddon</h1>
-  <p>Vương quốc này bị phong ấn bởi những kẻ gác cổng. Mỗi kẻ ngã xuống, một thời đại kim loại mở ra. Hãy đọc bản đồ, chọn đúng bước chân, và đừng bao giờ lạc lối.</p>
   <div class="meter"><div class="bar"><i id="fill"></i></div><span id="pct"></span></div>
+  <button class="reset" id="reset">Xóa tiến độ</button>
 </header>
-<nav aria-label="Mục lục"><a href="#road">Lộ trình</a><a href="#hunts">Cuộc săn</a><a href="#law">Luật vương quốc</a></nav>
-<main class="wrap">
-  <section id="road">
-    <h2>Lộ Trình Chính</h2>
-    <p class="lede">Mười ba kẻ gác cổng, xếp theo thứ tự bạn phải đối mặt. Chạm vào một ấn triện để mở hồ sơ của hắn.</p>
-    <ol id="stages"></ol>
-  </section>
-  <section id="hunts">
-    <h2>Những Cuộc Săn Ngoài Đường Lớn</h2>
-    <p class="lede">Các boss của những mod khác. Mỗi cuộc săn chỉ mở khi bạn đã hạ kẻ gác cổng tương ứng. Độ khó của chúng là ước lượng, hãy dè chừng.</p>
-    <div id="side"></div>
-  </section>
-  <section id="law">
-    <h2>Luật Vương Quốc</h2>
-    <div class="law">
-      <h3>Phong ấn theo bậc</h3>
-      <p>Chưa hạ kẻ gác cổng của bậc nào, bạn không dùng được kim loại của bậc ấy: không đào quặng, không cầm công cụ, không mặc giáp. Đừng ngạc nhiên khi cuốc sắt chạm đá mà không vỡ được, đó là phong ấn đang làm việc.</p>
-      <h3>Mỗi chặng đều giống nhau</h3>
-      <ul><li>Gom nguyên liệu của vật triệu hồi.</li><li>Chế vật triệu hồi, đem tới nơi thích hợp.</li><li>Hạ gục kẻ gác cổng, nhận túi kho báu.</li><li>Dùng kim loại mới để mạnh hơn rồi sang chặng sau.</li></ul>
-      <h3>Mười phút đầu tiên</h3>
-      <ul><li>Chặt gỗ, chế bàn chế tạo, cuốc đá và kiếm đá.</li><li>Tìm sắt trong rương hầm ngục hoặc từ Golem sắt ở làng (quặng sắt còn bị khóa).</li><li>Chế Iron Remote: 4 thỏi sắt và 1 bông hoa.</li><li>Chuẩn bị nhiều thức ăn rồi đối mặt Cự Nhân Sắt.</li></ul>
-      <h3>Khi lạc đường</h3>
-      <p>Mở bản đồ này, xem ấn triện đang phát sáng: đó là bước kế tiếp của bạn. Sách Bách Khoa Armageddon trong hành trang giữ công thức đầy đủ.</p>
-    </div>
-  </section>
-</main>
-<footer>Bản đồ lưu tiến độ ngay trên trình duyệt của bạn. <button id="reset">Xóa tiến độ</button></footer>
-
+<div class="app">
+  <nav id="tabs" aria-label="Các chương"></nav>
+  <main>
+    <div class="chead"><h2 id="ctitle"></h2><p id="cdesc"></p></div>
+    <div id="canvas"><div id="tree"><svg id="edges"></svg><div id="nodes"></div></div></div>
+  </main>
+</div>
 <dialog id="dlg" aria-labelledby="dt">
   <div class="dh"><img id="dimg" alt=""><div><h3 id="dt"></h3><small id="ds"></small></div></div>
   <div class="db" id="dbody"></div>
 </dialog>
-
 <script>
 // [tên, danh hiệu, biểu tượng, bậc, lời văn, vật triệu hồi, công thức, mở khóa, mẹo]
 const S=[
@@ -152,13 +138,17 @@ const H=[
 [1,"Terraria","Queen Bee, Eater of Worlds, Brain of Cthulhu"],
 [1,"Mowzie và Legendary Monsters","Ferrous Wroughtnaut, Mossy Golem"],
 [1,"Block Factory","Yeti"],
+[2,"Block Factory","Sandworm"],
+[3,"Block Factory","Kraken, Pirate Captain"],
+[4,"Block Factory","Infernal Dragon"],
+[6,"Block Factory","Underworld Knight"],
 [2,"Terraria","Deerclops, Skeletron"],
 [2,"Huyền thoại","Ogre Lord, Frostmaw, Umvuthi, Frostbitten Golem, Cloud Golem"],
 [2,"Vanilla","Elder Guardian"],
 [3,"Cataclysm","The Harbinger"],
 [3,"Terraria","Wall of Flesh (ở Nether)"],
 [3,"Ice and Fire","Hydra, Cyclops, Gorgon"],
-[3,"Hầm ngục","Kraken, Dune Sentinel, Skeletosaurus"],
+[3,"Hầm ngục","Dune Sentinel, Skeletosaurus"],
 [4,"Cataclysm","Netherite Monstrosity"],
 [4,"Rồng","Rồng Lửa, Rồng Băng, Rồng Sét"],
 [4,"Vanilla","Wither, Warden"],
@@ -173,36 +163,25 @@ const H=[
 const A=[["ironcolossustreasurebag","iron_remote"],["goblinlordtreasurebag","strange_coin"],["arion_treasure_bag","waken_emerald_totem"],["eldorathtreasurebag","builder_stone"],["zoranthtreasurebag","wither_skull_no3"],["enderdragon_treasure_bag",""],["elvenitepaladintreasurebag","titansinsigna"],["vaedric_treasure_bag","wanderers_fallen_shard"],["bringerofdoomtreasurebag","doom_key"],["thecalamitiestresureabg","sigilofcalamity"],["sanghor_treasure_bag","cocoonofblood"],["newbornofthezenithtreasurebag","sun_emblem"],["nyxaristreasurebag","corrupted_khyros_tear"]];
 const IMG={"arion_treasure_bag": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABo0lEQVR42q2STyikcRzGP+87Q0ObMQxqL9PrMFpMkr8jKaNtCgc5cJ1ycpFSiFLk7syJHBzIaRMHe5F3tj1s2U14HSakjFgvaYw35reHbd7ewSvFc/v2+z2fnu+3B94pye4hEPEI6/xn/kp6MyAQ8QhXKJ/kdx1DSwGQ7ZcBMLQUB+q16ZPtEijBMF/GezOMrlA+j8WCsia3eNMKQzNzAKxdbBKLbnC1egmA41wyU7wImOypFfVtVQxHV0mvkk4BZKzgeGpuGCkSh55rcn8libS00u/voNrlxa0ZBPIKWVmPSbZHbBgpEqmKTyjBMACx6AZTdyF+bu6wphyhbxnPEshWs971GSUYpt3bxuDAkQkCSMQfzINa5bQOeYc3xEf3mDV2WDo7IxbdZyIHOikkue0FQFTEKWtyi3QKE3l5cJ9B/up0UqOGUb7VsX6SZdtEE+A4l5B3b0n0HaOqKsPTy+an+4ADTdMo6NbtAdYU9YulVC6M4fP5/sObT2kcLSYRf3i9yumGZftlckucuH6UA/BX+c2d/visRLZFslb1qazmD9E/35edhrp67BoAAAAASUVORK5CYII=", "bringerofdoomtreasurebag": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABWklEQVR42q2SvUoDQRSFv7hbDSxTD6QLLJImK5q8QMgDiOA7CL6DaCP4GJaC+AQBA6mCYtIkEkgRCMRUMgxMtcvYZNaN7Kqgt5uf882dcw/8sWpVB41GwwFYawFYr9eld/eqxPV6HQCtNVprlFJOCOGEEO5HgK9er4dSKgfFcYyUkiIkLBMuFosa4DxkuVxirWU+n//Og8vTI9fptji/eSSKIowxWGvRWrP1pVYJSJLEARzHIZ1ui/1mk9fplFF/AsDF3VOtsoMkSZyUkiiKAFitVlyfHTLqT3iYp2w2G7TW5R0UxX4CHtIWb9w+v/tx7gByE40xSCkBmM1mDIfDHNI+Oci92N5xHlI6xsFgsLO+un9hPB7nX6vMgdYaYwxBEJCmab6fpilBEAAghNgB5F/wkQXIsoww/IxIGIZkWYYx5vscKKWcf6XYblH41cTSIHmQD06xiuJ/qQ/ymJ4gVNm/8AAAAABJRU5ErkJggg==", "builder_stone": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABWklEQVR42s2SsUsCcRTHP+cVFS2CYkMXpWGJFQUZKIZDBBK4FAgtDSGNQdESTTXV31BDg2NEi0tLgwQuDbqYCjl0t9x1YhwEQcE13aGe2ljf6fEe7/P7vvd78NcSuiVnwzHTiqvlgtAPMNCtORCK4JMWrZTZD+IAqLpMVMoQCEwDoIUiv0La5PZJ5ko8aXrPL828/GV+fxrmxta+2TqWw4FVVHXZLiSW1thLJmjs7OJXa6i6jNsn2ZB3TREAXFYiup7h8CRrAw7mJwHw525JpY8BiK1uEgzOtTmwAZpSIndzAYB3bIaj7RRX93kA6vUXAHS1htE02gAiQONNORMF8XR8aoGRIZFSMY/H4+M5FEf6GEVTSiivFQZdw6i6bNtvc1AtF4R65Ynwctqm54sPaEqJwuOdw7oD0DqKJU/22o6NpuF4veslWpse807Q+TOdzT1PuRXUq/H/6AcTXYKHm9pi+QAAAABJRU5ErkJggg==", "cocoonofblood": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABaUlEQVR42q2TsUvDQBTGvxTdAk4ZrnVJW4US0VbQ0hbTRccuMbPcoqPYLqJ/gCWLiuCi/0JFQejuoJOQxlkJlLYHCYKU7HHqkTRXEfRNd9/d93vv3eOAP4Y068CiNASAbs9BKZ/DZacjvJuaZd7a2AQLAq4dmWb4K4BFaUhIGgBgv3+glM8BAPTVNSEkJTJXNA2lYpFDGtUaFmQZRJYTkBiABQEqmoZFVcXJxTlUx8a8Y/NzQtLoe764AovScH1pGQBwdXuDdrOFggSs7Jp4fXO4oZxVYej18MdHPNw/4Ot2swVjewePL89c+xyPkxWwIEBGUWIgZpgYuC76nodGtcbbELZAZJmLA9cFAHzddXD9cB+HspEYMJl53/M4pCABjWoNQ9/n7zBdwVx0M/R9ZBSFQyYaYyMQkk5kT45x6gI5PuVZRebEXzD0eljOqrxMZp0BezRm6PYcPPVsaeZnis44Oq5JRM3/Et9034nOpQDe0gAAAABJRU5ErkJggg==", "corrupted_khyros_tear": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAp0lEQVR42r2TMQ6EMAwEB8QHcMMD4o6aiv//Ijwgzaam4irQSUeCotOdm0hWMt5dK/CrGsfxAI6ne32hf5gZIQSeIH1hOmaGmbEsSxVSUsA0TQBIqkKGO+/rupJSugC1Gu6aZnadMca2EN0dSbg78zzj7m2AO8k1Gx+Abdu6lBKS2Pf9/XHXtAVJxBiRRM65LcQzuDPM0vSigpxzJ+lxhVULf/1QX9ULJQ1GiFxtbOAAAAAASUVORK5CYII=", "doom_key": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAoklEQVR42sWTvQ3CMBCFv7NYhF1ggogeKYvQsgIi1DTQUYUJskBKKNKiiAV4FMhU/kFGiOvsOz3f9+4M/w4LXa4dAuj1Og/AWeFaYgK33V5jVesKmhmK1bpo4tSyODZ0mceiAvdDw1b5boMCvWBl0AEbK3R3aWis6iR/EsFjUOoB8DawaAo+5vZFBxcHrdJL5D4xtBhh+sgjTGKJwe+Afvwbn01wL15n1cSoAAAAAElFTkSuQmCC", "eldorathtreasurebag": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABtElEQVR42q2Sv0sbcRjGP19zaJVEXUKqEWmPRsK1EAiSKUuQog6iRGkXB4dOSumfIC6tq0uHLkUoFDp10yCBDoIlyEkcQkhAU9oklFtyyeEP8PLtEHp4eilCfcbv932e93ne94X/hOj2sdWrSADdbgOwbbfFnQW2ehWZ9An2bcnOlQ1ASHRKf0vJbls6vJ5/2Xsef8Cs4nOI6YeCWcXHTI+Qd4qQ9An6Y32c5y8B2Lc7vJ0r23HhKbDxYlImpmKUXm/zKCipGJ0y3W7finBLYGU6JQEeD7VITMWIahrFQoFcNg/A+pdD0XWIK9MpqYZHGQ+FAPimH/EyrZLL5jk1A9RbZxgNE71QdHiKF3kiErkmawKghkehWsNomC7Hys0IE5EIb95tekzG4KmqEhweIq5F5V8XzhrrrTMASuUyuVKF73sfWFtaZG1pkfO9DLlSpePiBlwOTqo1ADLZA8Jjz3gyH8aymny+CJDJHgAwEhhwxXAEnMdqjQTwaXXB1Wnu7UengacDvVAUcS0qjYbJK/8gy++/Uv31A79/EMtqYllNAI5/1l1b8DykuBaV3S70Ovle8AeNAKoA22PgyAAAAABJRU5ErkJggg==", "elvenitepaladintreasurebag": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABx0lEQVR42q2SP0gbcRzFP9eGDP6jKEpAxBtMigSpQyC4VIhDrSSLm0jo0LhlKAh2sR1El4JLuE6Zilwz6XKldmgCdmgQgkQkhhiEHGnrGbmERgw0Ec5BPI3xitB+t9/vy3u8974P/nEEq0Uu6jcAUnk7ALPvNoR7E+SifsM11s5B8oy1xDkAwwNtAGSLNZZjX0zcg7/Jc4WmCPpsJtDn7Sbos7E4M2ncy4JrrB3c45DZAuAgeQbAWuLcVPHwLrD/idfIHXYw9KhOo3DKr3wF/UeDVN5OfPdPk4UWBUfrIQNgbmmPwZ4+3P0imZ8FVL0EwKfdbcEyxKP1kOF4fHopG9A2dlh+f4yql4i+HSGxXbYO8TYYnuKYfoUUuUy/WtbwOOstdluuEJ7YJDD64frDPY4ii8xLJ0RiAsMDbU1XMAmqZQ0AKf4cRRYJjL4EvgEQmC2gpF+Yam6O7eZDy3VSTX6mq9uBIouEJzZR9RKKLPLx9VeyxRpBn41s8Q6CVN6Ox6kRiQmo+h6r4V6k+BRktniz8pv0foXBnj7AsK6yvDBtAHicdealE2ae9ZMt1kjvV1gN97aUyLKJV0TfUw1UvWQSAU3g/zIX3lm82auYDpAAAAAASUVORK5CYII=", "enderdragon_treasure_bag": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABrklEQVR42q2TMU/bUBSFv1igEtexoyQ1whaWCgwGITFgENmIkMoC6oY6du/AyIiQEH8ANgamLGz8AKYuFWTJgjIgIaWtg5woKTbFqUB6XUpk1wlCgjPed89995zzHrwQqUEHS44jAH7d3gJQq9VSzx6w5DjC0nXqnkfddQFQVRUA3/dxXbfHk55ab7VYxDKMHnFqbAzLMDAMQzz2DPUjfqtUUvyTsFos0up0aLbb1D0v0dt3wM6GIxZX5tg5rHIXhrSCAKAnJyoh4cFaqSQAFt4FLK7MYc/MULu44Oy0CsD2cSU10MS1UknI6TQ5TQPgx/U1Xz5NcHZa5byZ4bLRSJg4FCPLMjlVZbRQSMhqBQFZRcH3/Vg9kUJeMtHEKADtmxuOThoAOOY8Zvo9qqrGUpCiN+jD43ws7/FwMM1D+w05TSOnaTT/zGOdfGDraxnr7eTgDbphF31XsMw6n7U98pJJXjLZNPdZZh19V5CR5f4v0bZtkVUUZvOzjKRHAPDuvwOgD4/TDbt07n7zM7yi7ro9I2Mp2LYtALKKQiGTiRn4iCh54F+ImvQ/ouRXwV/0IZzdU5fgfgAAAABJRU5ErkJggg==", "goblinlordtreasurebag": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABoUlEQVR42q2SwUuTYRzHP5tFrYFh0zFstqFRSagbuXiJ3kMEetDdoou46NDJY3+ADHbp0GHHOgqe9KYXpSGyHcZeSDootVgMtqbb+9bYYM4Q93SY78PUVxHqd3qe3/N8v3y/v98X/rFs5z3E4ooAqP7+A8D76Jbt0gRv54MiPOklpemkk3sA3H/YA8C37Sqry3mJs18kLzLhR1E9EjgacKGoHqZf+IX554oV8FiuCE96iUz4eRrqAyCl6ZezEH05Lh4/H+NT6TOjARc/K01+lfYtLXRZDc9+x05xcxd1LMgj3xOu6gIjU+GaYefj0o7tXAWxuCIiU7Pty2GSja8G7oqPTOIL9eGji4cYiyvC9GrWswe98uzqv2E56LNDPEzK449qA8dIAxJw2+2gdXBkrlOYKiRBLlsjl62hl5sAKKqH4EA3AFrLQFs0TuTBUsHQvZu8mrnLYI+ThfW87H9494bv5TQpTZfJPEOgl5vc6r3e3nWo3dsq1Mllazg91uATBMeeZMKCA90sJwoArKwVJeD0FiyD9HpuWHQq66xO8H+pv0Aoo3IipfXuAAAAAElFTkSuQmCC", "iron_remote": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABK0lEQVR42r2TrW7DMBSFv1Z9hGBrqrLgDlga8QtEMohUqRpxqfsoe4Pi4tIGhQWGRgpIkHHItAfwyOqlqUumaUa+1/fcc+6P4T+PlNJLKf2vwQDbtfDbtfDvry8eYBkLNsZ4Y4yfgpumWVztt+enELuKgfM8v5oeoOu6m5jh4zPcF3OwtRbnHEIIAJxzlGXJ6XRaxNTeleCc43K5UFVV8FlredS85ZwdoG1b+r7HOcdms+F8PqOUiiZZxtiLouBwOAT/OI4A0SSree1t2wKQZRm73Y79fh+C67pmOo0bBddmzdkB0jQNKu5KkFL6NE1/RjQMofYpe9d1d+xhjFJKr7UmyzIAhBAcj0cAkiSJSr/pwfejB9Bahx1IkuSh9OgiTXdeKfWwcX/6874AD06SbtfihA4AAAAASUVORK5CYII=", "ironcolossustreasurebag": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABkUlEQVR42qWST0vjQBjGf1Wx2BaULkoxISUV9pqFFhFBpNiLPSjpwYv4YfYz7JfwunuVFXKVCi09Vb1k6JRgRXMwwRRsPNiGpsY/4HuZgZnnN8/7vAPfrNR7B/X6YQjgeT4AlnWW+jKgXj8Mi8V1bLvPYHALQCaTA8B172m3LyPd3Ef2dna2WF1dA8D3H8nncyiKimGUwy+1UCyuo2kaQggAbLsPgJS9yEUi4PdRJdzcM/jz9450eo4gGDHJY7aF+VmxaZqhM1rm2b6isV/i+KDMxg+PlLxGzz1xen6ZejdE0zTDQqGApmkAdDodTnaXuPjfprvwEykHbxwsJIl1XZ/C3ozT98hmM7jufczxh1MQQvCvtQjAykp2vOZjU4gcBMGIZrNFs9mKQYbD4XjXTXwk5kBVC1Qqv3DdB1z3gUbjgO3tTXzfw/c9SiUNRVFjgMiBlD0URcVxHGq1KgC6riOEoFar4jhONM5EwDjZcNJOOv1qblY4/YligCkIE5BlWQTBCCl7SXc+L8Moh9OJJ9ULmeCyZExNYnEAAAAASUVORK5CYII=", "newbornofthezenithtreasurebag": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABbklEQVR42q2Sv0sCYRzGP0pEQ0FUokRwFjoYWFSgQ2KDNTQVFU2NSVNLU1sUSE2tIv0FNUS1NIhGoEOG/YQcHPQiwsOgIalw6BrkXs4fJ0I98MJx7z3PPc/3+cIfYTK6iAS9KsDryzcA2+f3ppYFIkGv6psZJBHNEUuXAXBZfwDIKGaObm4Fz9zM3uLGShVxytdHYKKd5fExVfumrRFx7eDKFAHVB6zvr6I8JgFIRHOtRfB4PKokSUx3P+O0d5LNl9DmURuhTiAeCqgAm6cfSJKEzWajUCggyzIAqVTKZOggHgqoVqcFq3sSgIfjE8J3PciyzN5cF5eJN+Mh1pIBRhbmCe/4AcjmS/QPdNTFNWyhd2hJnIuzXZz2TlGnvgUhoA1KD5fDjcvhBsDqtAgRQwdKtigq+3x/Eu+/dM+1McQeaCtbQRK7f5j09aEgK9liQ5dVLWzNjqraX/R29cRYutx8D/RCemSUSlo9+V/wC7l6jLPB+AE9AAAAAElFTkSuQmCC", "nyxaristreasurebag": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABb0lEQVR42q2TsUrDUBiFvxRJl2S4IXDpGLpEITSDdOjqK4gPIT6CIG7iI/gEQZzsXKdOxUEpaChI6VQKIXdIFrtcl96QtgYF/befe89/zzn/ufDHspoOgiDQAEVRAJBlmbmr67iDJrDneeR5TpZlAPi+rzeDtu626k0URbreDwYDgiAwDOh0OqbXv5LQ7XYBkFKSpil5ngMwn88rrLXLYDqdWtdnx7p/0uP85gnHcSjLEuPHRoL1LYO6hNPDNv2THuHREenbG5PRKwBX989W4xaiKNK2bSOEAGC1WnF70WcyeuXh/ZPlcrnHoLULDsMQKSVKKaSU1fCyLHFdd8+rVpOJQgiUUlzevQDgOI5Z59YWWvUXDO00TQFYLBYIIXj80Ni2XQ35kUGSJAyHQ+I4BmA8HpMkCcCejMoM3/e167p4nke73QZgNpsRxzFKKdbrdcWynoMqypus66IoMIOMJAPcBTcm0eS+XrU/YPGf9QWDO5fq8kev7wAAAABJRU5ErkJggg==", "sanghor_treasure_bag": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABsUlEQVR42q2TMUhbURiFv1tDtgxSSYw4aK2vxAwRLG5CRaRLKqQ8urgIr1sGh27ZXAJCQTt06OBSWujiYl0UROGVDFZpQn2GvphgalCu5CEaaSEUb6c8mrykFOq/3u8c/vMfLvzniE4P8cm4Ajg7PwNg39oX/2wQn4yr6P0o1pGFXbEBCPgDANTqNeyC7eru/G09/bGO1q+5wtHIKFq/hjasqQbjaydc314XgGqY5It5AKwjy8O2NVh49lCNT4V4/cGielFFOpLGPVojdLWKDd1Ql6qX6+MciZkhnj4Z4V7oJ8giD4KCVfOr6HhEQzdUT3cPkaEIAOaeiT4Nu1s5vt/EyOaznY/YKgYwcybzL00ApCMJB8OeuJ4W0itp0itpD2hXbOyKTcAfaGrBNZCOpHpRZbPPR7JcajJ5/+WKZLnEZp+v8wYf370A4DRTYNZcImWkXCjxKMGsucRppkA4GObbzhtvjU7lAOlIPgvFj8wJ+aJgIjbhgtnMCZZQLtu2hbHomFp8PsXy2iGhuyH+jAeQ+rTB3MBgUwuev/DK71Nvh2OerLV6jWS5xHz9l+A25zcbUrKTZdc5kwAAAABJRU5ErkJggg==", "sigilofcalamity": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABwklEQVR42rWT30tTYRjHP++SiF1k5zA2IUp2FtgSHWwTa+FF4rwIoSTBG6P+hrwLFKEr/wqvvO7Gu+OFguLFbNXZOCPSYwvNzWLnuIUlZK8XszePWtSFz90D7+f7fJ8fL5xnTAeQTwXyv8F0KiunA8h6NCWXQA4IpGF0nSnUchIEyGSGKOVNrI1XLAcACelUFtfdkQCuWxW/mMBJxdGRcUp2jr2RZ0wJMCWI/jEcp8DjseenHIjj1TOZIUp2Dk0PA9DW1k7JzqnHrlfFMLow52eVC+XgwY1Faq/H0fQwPclBepKDCtT0sBJtFIrEW6N+By9GL8onjx5StuaYfLnPm0+hpqtkFtersu5YANyOJJho72PGW2OlnKNYsUULwLutn5StORbe//D1t5o3ffnu9zoz3hqbu9unZ3Cv84IEaFzqR7sS8Qlcv3azaf9rjeDeAQDFii18ayx/u0UsmqC28fb3Wo9aqLmV5hDdHXSjW7XkG6LjFMRq3iSdyirgY/Uq219aFRw7gv96B+b8LLFogsZ+kjt379MRH8arBxX8xzs4HpoWkcHLfXTEh9natPhcWUAefPBV/qfQQ71SD/XKc/2xh1bIuPkT6EZ4AAAAAElFTkSuQmCC", "strange_coin": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABA0lEQVR42mNgGPKAEZ9kiBDnf2T+mnffMdSz4NM8Y6cNAwMDAwOXri9EUKr8PzZDMECpBtP/N6dd/796F/5/U4ogHH/7Mek/uquYsGkuX+zM0Bm7l4GBgYFB046JQdMOouzb5c0YljHh0pxWJcjAwMDAcP3QP4brh/4xuExpxOpaJlze4PdxYThRtgvuim+XN8NdhdeA99fPMTAwMDB0W61mWLTuB4OmHRODoKYRQ2fsXob7r9gxYgKrC9KqBBnuv2JnaJ/AxcDAwIBTM4YB91+xM1w/9I+B38eFYdodP3gY4NKMkQ7WvPvOyLCO4T8Dwy642OEjHxkYGNhJS4nEpMDBAwAD8mpDs0goSgAAAABJRU5ErkJggg==", "sun_emblem": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABMklEQVR42rWTr07DUBTGf03qScXShKQezJ6BTaBIyAxzw1CDwjKBhDfAoJiiaiyppn2CihmGpUmTUnGD2xLgIFhv2ls6xMJJbnLun/Od7zvnXPhPE8lEJJNNb2wzAMCydi2RTEgvyBOFSCb6bH3fACgDqkAmeOD3tV+C2A1OXgDpUPuuB4G/D8BgPGJ6PflD8+uJiIjIciGyXMjn+1Svh7O9Rk1sUz8Aqxd4uwKgSBRxmDIYj2qJahKq+vGCH4C139l5hPBSSzDroBnkiQLA9eBr9UyRKJyPG9Q80pmrfk1CtUX57JBO75w4TCGc1ILjMGV490S1lZpBFaSk25a5dQ7y2SlOt0cR3QLgdHs6M8DBkUfg9zfPgZpHuMf3ALpgJe1y/2sbzVE1+902ylt/pq3tG0sw0nsd4l4DAAAAAElFTkSuQmCC", "thecalamitiestresureabg": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABsklEQVR42q2TO0gjURSGv8z4TOFgWBUfEdP4WMHCV2RBMLoWNioJKCjabBNYlu0WtlstBBshWNio2FjYLMtCClExglgEfBNTCAaNiYqCZhEbk9wtZhwdjWn0dPec+/38/+FeeGOZXhuMSwiAoFDPcyL1XdNrsC0JIQmWNIEybXYKLD8Ry0hnrz8JaCKnwLSABQkA8SCSNoItCc2AX+uFVJgl8ehCSgWP9DWKuqkvhCSYaWskJKlwUBhhAPk53FqVLT6uhznOlan/1kVnfzuy3cpxrkx+bQmzgajBtWEHfXazGGgxUzlsA275uljLDwL4V3bxxQfYOvDx2fSY3xBBhws/MO+P8uvvCfHAT138MrKHVbGwUdxgcKwLdNRk682miixGh+wUOn4zve2kM9bDYI4CQGZeKeaSBvEiwsl1giJFXUmv5wpY5c/3fYI7g3xa8wDgcE4QjvlIuYPD8zjl+TJwpQ9VIY8BsCoWjv5FXkY4u0kwGezhIpbA5fbicnv1Sy63F4dzgsvIXvqnPC4hxiq7sSoWCkrrDAt8qKPwPnfRTVPav6BUd4vnvXvN9lP4Xeo/1uGTBzriIbsAAAAASUVORK5CYII=", "titansinsigna": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAABk0lEQVR42q2SvUsbcRjHP3doluIgYhVa6iAGIR1aCYoJVYwgLRJBN0tbMrSIKOE6lY7+BZESIYOgk2McFHXxQOUaioHgSyC50uFCodwlDg63hODPIebaS3OTPtvz8n2+z8sX7mGSV2JDUUT2/BcAa+pOy7q25oCaSgmjUCCW8OP7UrqLRoVxZbF79kPyBKuplJhYmAJuIH/E2w/tTu6p1QOMiH8btDUDNz9/AyAUsB3g96yEcWURfuluIDcKjEIBOAAg9vEP4coM5utt+t9vEQrWJ5gL3/y/84aiiFgiDvmvTI91ADD2IsLg6SK9xWG0gSrwBKi62GWvayvP++ieHaIcPXRi/tFHPHv890wyQP0lBy7wq+t3nPz+5Pglq4aesSlZNTd4Td2Rlif3ITDOStKkrHegZ2xWLw30jE1nVy9azgRAy5nOy1yv0tf3AImVpEko6OO4opIuymi5CwDSmuytsKVIVCQP39Sd/BF6xib700dwoEpak12sLeW5FIkKgPi8cJgaIzcrzFPbjSatZPkgdgvddqOldPbEOwAAAABJRU5ErkJggg==", "vaedric_treasure_bag": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABeklEQVR42q2SP0hCURTGf8+kogahyf4QYtgSEWlGoITRIi1Sg+DQ0iLt1hREa9ReS0FL0FBEETZEUgSVKYRbyEUcXg4RZCQV4m2Q98ier4I6yz2ce7/vfud8B/4YitlFZGROAuTfMwBcpON131rMwDFbFAChCoQq8LmD0ucOynZ7r/yRQIuVwVkCjpBONNkyQ8AR4jPJty3EbFHsTgsFUakSPq0DkMjtc1+4U0wJlsJDcnh8gK3NNjxWL6lyEm0eQhU6GKDBINu/IxuffeQedpmYsjEaaaKzK8/b4yU9bSUOrjKKqQsr/h051urG7qyOZjtzQ9/0Mdcnt7Sq8+yVNgwKLPXAiquI4iqyml1gZvEcgFQ5SXdj/+9s9CyHDbVEbh8AZ4ezxgWdQBtUPZK1s2K1ZvV+r+D0Ja1bdjMZ1+uHA0d6/rUNq5ZoK8tL9SiICpJXFJoBkLwaVBpc8LmDUvvFY/Wyml0A0Lfx6xKZLpJG9DmEKgBqwP8SHyrBlic/P6TBAAAAAElFTkSuQmCC", "waken_emerald_totem": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABBElEQVR42qWTMWrDQBBFn0wgtSs5qlwJVOgAuYEhYDC5gSqDjpDOZXqBq9zAEAwOuoEOoMJgCKiStZW6gKtJsY5teXcdgX+zMLvz+X/+LNwJz1p9Raz1lfn+wdbsvyfWfsWHXJOYBDt9LMcpAOWhAiDbb053twkuUB4q3XgDVgKVF8zqLwiGULe6GAz7E/iTZ9KnF+LHcceCWm575BIjvI2ELJLFz0r870TIIl2LzXRMBSUeNMKUs/+6hXVzvPtvD2LE/0xQedH17yAxFYRo//O0k4LKCwgbKHsMMdtvdMMl6ta6B1YLhI4B7zAseM4k5tF5BuAc4qDXl3MskVvBnwojXhO/2i9kLKVuTykAAAAASUVORK5CYII=", "wanderers_fallen_shard": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABHElEQVR42rWRsUsCYRjGf1+ESIiturXorjgEgtDW2tAgNLWEEE0FDv4BQvo/OAgOTW01GUEQRDbclvERN9wdtAmCHOLXcHzXnXeHF9GzfO/7wft7H54X/igRbJr7V0rXo+drkQawvf7Rq7R0qdJAQgDTNRClGWqa16AQJM7h1jrRvs9BY+G70UP16qHqVVpBh0QA0pKM5xN4zEJjgSjN0MM3J910GbwuX8CAJjUUWQCOdk5R07wHtV14S3BgO+/CdA0PAjhyxeXu2U8/yHA8bIcuFMlAWtIfDsqRKy6+znma3InEDLQLwMsi5t2YAcDD5y3swQFV/7yma0S2xzoIKmlraoAOT1oydvtGAED/o+Pn8isVC2VVLJQV/61vrEx8hVsCjagAAAAASUVORK5CYII=", "wither_skull_no3": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABZ0lEQVR42p2SsUoDQRCGv1MrmxxhvCaQVsKRwv6SKk+gTdTKOoVPID6Eha+QyidIEfBKSXHhCPZZAsuJt0IQbMYiesZ4F9Efltn9d+ZnfmY8qqFrd68qqexDRYRerweAMYbZbEaWZaX5m4T2+30AgiAAwFoLwHw+J47jHzU768WdTqfSj+d5RFG0ae2bAKpff9ZarLVFJ1XY2yTSNAUgDMNC6JOr1Wo/BIoORATnHMnxG8lNF2MMw+EQYwzJTZfk+A3nHCJS3kGWZbRaLU4fGwTPu+R5joiQ5zmXd7tYe4TvG6bTabUFVSVNU4wxhGGI7/s0Gg0mkwnOue0WAC+OYxaLBWfZPUEQFPH8acWXjfEbRETb7bbq9aHetlAdD1bx4y0iunUkIqJRFKm+nqi+PHyd8UCXzfrvAmvbqDoeFFFfHnTZrJcW75Qt3Wg0onuVABRx/+KAP0FEVER02ayvLF0fKv/FtuJ3jF29xaP4U4wAAAAASUVORK5CYII=", "zoranthtreasurebag": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABrklEQVR42qWTTUsbURSGn1jBL6ZISNVhVFIJibGLlBCyaUsrii5E0ArBP9Ct/gCF2HWhv8G1VLrqStJVu5GhkBZstWqkdBiniWPIxTohi+tCZ8gQR0Hv6nDvOQ/nvO+5cM8TCnp4+fSZBBDnFQC+7e5em9sWVBwb1hDnFWpOnZpTJ51ISE3TJCBvBQCI/2fMvpjmYWcHADWnzuN4nEwmQzMkcIR0IiFjQzFev5rm59E+ulXCMk0AdF33aq8FvM1lZHYixcr7LyhdEc7a6wCYpolhGL66FkBuckYCPAlbZCdSjI6N8Wtnh+1CEYD8hh4KdCE3OSOV7h4G+wYAKBz8YGVxhO1Cka2yQmlvr6WDtmbl3eJkNMb3U4NH4bAHd4RAVdVgG/sjvd7lu/U8f4qfCTce8OGTAKBTUQDQNM3nQrsbWJUqynDPpcq/bU70KVJzXwHctnk+Pg5XTrQAXO///jtm7c0yyegshrEFwPzCAgBl20ZVVQ/oG8GqGliVqgdZXF3ykj5ublK2bRwhbv4Lo9GoBOjv1XyaHFYtL25eosBFckEAotHw6XDT9t7pXAAxn6PH8YFFUwAAAABJRU5ErkJggg=="}/*IMG*/;
 const pic=(k,alt)=>IMG[k]?`<img src="${IMG[k]}" alt="${alt||""}">`:"";
-let done=new Set();
+const SK={"Yeti":"yeti","Sandworm":"sandworm","Kraken":"kraken","Pirate Captain":"pirate","Infernal Dragon":"infernal_dragon","Underworld Knight":"underworld_knight","Ogre Lord":"ogre_lord","Umvuthi":"umvuthi","Sculptor":"sculptor","Ferrous Wroughtnaut":"wroughtnaut","Frostmaw":"frostmaw","Prime Ender Dragon":"prime_ender_dragon","Skeletron Prime":"skeletron_prime"};
+const skey=n=>SK[n.replace(/ \(.*\)/,"")];
+
+let done=new Set(),sdone=new Set();
 try{done=new Set(JSON.parse(localStorage.getItem("armageddon")||"[]"))}catch(e){}
+try{sdone=new Set(JSON.parse(localStorage.getItem("armageddon_side")||"[]"))}catch(e){}
 const save=()=>{try{localStorage.setItem("armageddon",JSON.stringify([...done]))}catch(e){}};
+const ssave=()=>{try{localStorage.setItem("armageddon_side",JSON.stringify([...sdone]))}catch(e){}};
 const $=id=>document.getElementById(id);
 const cur=()=>{for(let i=0;i<S.length;i++)if(!done.has(i))return i;return -1};
-
-function render(){
-  const c=cur();
-  $("stages").innerHTML=S.map((s,i)=>{
-    const cls=done.has(i)?"done":i===c?"now":"lock";
-    const state=done.has(i)?"Đã hạ":i===c?"Bước kế tiếp":"Chưa tới";
-    return `<li class="st ${cls}"><div class="seal">${pic(A[i][0])||s[2]}</div><button data-i="${i}" aria-label="${s[0]}, ${state}"><span class="tag">${state}</span><h3>${s[0]}</h3><small>${s[1]}, ${s[3]}</small></button></li>`;
-  }).join("");
-  $("side").innerHTML=H.map(h=>{
-    const ok=done.has(h[0]);
-    return `<div class="hunt ${ok?"open":"lock"}"><h3>${h[1]}</h3><p>${h[2]}</p><em>${ok?"Đã mở. Hãy chuẩn bị kỹ.":"Mở sau khi hạ "+S[h[0]][0]+"."}</em></div>`;
-  }).join("");
-  const n=done.size;
-  $("fill").style.width=(n/S.length*100)+"%";
-  $("pct").textContent=n===S.length?"Vương quốc đã được giải phóng!":`${n} trên ${S.length} kẻ gác cổng đã ngã xuống`;
-}
-
 const HAS=[0,1,2,3,4,6,7,8,9,10,11,12];
 let MODELS=null,LIB=null,VW=null;
-async function load3d(i){
+let SIDE=null;
+async function mount(get){
   const host=$("vhost"); if(!host)return;
   try{
-    MODELS=MODELS||await (await fetch("models.json")).json();
+    const list=await get();
     LIB=LIB||{THREE:await import("https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"),V:await import("./viewer.js")};
-    const list=MODELS[i]; if(!list||!$("vhost"))return;
+    if(!list||!$("vhost")||!$("dlg").open)return;
     VW=LIB.V.createViewer(LIB.THREE,host);
     const tabs=$("vtabs");
     const pick=k=>{VW.show(list[k]);tabs.querySelectorAll(".vtab").forEach((b,j)=>b.classList.toggle("on",j===k))};
@@ -211,6 +190,8 @@ async function load3d(i){
     pick(0);
   }catch(e){if($("vhost"))$("vhost").innerHTML='<p class="v3err">Không tải được mô hình 3D. Hãy mở trang qua GitHub Pages hoặc máy chủ web, không mở trực tiếp file.</p>'}
 }
+const load3d=i=>mount(async()=>(MODELS=MODELS||await (await fetch("models.json")).json())[i]);
+const loadSide=k=>mount(async()=>(SIDE=SIDE||await (await fetch("models_side.json")).json())[k].variants);
 function open_(i){
   if(VW){VW.destroy();VW=null}
   const s=S[i],d=$("dlg");
@@ -232,10 +213,97 @@ function open_(i){
   d.showModal();
   load3d(i);
 }
-$("stages").addEventListener("click",e=>{const b=e.target.closest("button[data-i]");if(b)open_(+b.dataset.i)});
+
+// ---- Chương ----
+const CH=[
+ {id:"main",name:"Con đường chính",e:"👑",c:"#f4c453",d:"Mười ba kẻ gác cổng theo đúng thứ tự phải đối mặt. Mỗi kẻ ngã xuống mở khóa một thời đại kim loại mới."},
+ {id:"ter",name:"Terraria",e:"🌳",c:"#5fdc8e",d:"Các boss của mod Terraria. Hợp với từng bậc trang bị, từ King Slime đến Prime Ender Dragon."},
+ {id:"cat",name:"Cataclysm",e:"🌋",c:"#ff8a4c",d:"Tám hầm ngục và tám boss của L_Ender’s Cataclysm. Hãy đi theo thứ tự gợi ý."},
+ {id:"bfb",name:"Block Factory",e:"🏭",c:"#52b8ff",d:"Boss của Block Factory’s Bosses và các hầm ngục lân cận."},
+ {id:"leg",name:"Mowzie và Huyền thoại",e:"🗿",c:"#c590ff",d:"Mowzie’s Mobs, Legendary Monsters và Kings and Monsters."},
+ {id:"drg",name:"Rồng",e:"🐲",c:"#ff6584",d:"Ice and Fire: ba loài rồng và những kẻ canh giữ hang động."},
+ {id:"van",name:"Boss vanilla",e:"⚔️",c:"#d3dcf5",d:"Những boss quen thuộc của Minecraft, nay cũng gắn với lộ trình."}
+];
+const GM={"Terraria":"ter","Cataclysm":"cat","Block Factory":"bfb","Hầm ngục":"bfb","Mowzie và Legendary Monsters":"leg","Huyền thoại":"leg","Ice and Fire":"drg","Rồng":"drg","Vanilla":"van"};
+const SN=[];
+H.forEach(h=>h[2].split(", ").forEach(n=>SN.push({name:n.replace(/ \(.*\)/,""),full:n,req:h[0],group:h[1],key:skey(n),ch:GM[h[1]]})));
+const GUIDE=`<div class="guide">
+<div class="card"><h3>Phong ấn theo bậc</h3><p>Chưa hạ kẻ gác cổng của bậc nào thì bạn chưa dùng được kim loại của bậc ấy: không đào quặng, không cầm công cụ, không mặc giáp. Cuốc sắt chạm đá mà không vỡ là phong ấn đang làm việc, không phải lỗi.</p></div>
+<div class="card"><h3>Mỗi chặng đều giống nhau</h3><ul><li>Gom nguyên liệu của vật triệu hồi.</li><li>Chế vật triệu hồi, mang tới nơi thích hợp.</li><li>Hạ gục kẻ gác cổng và nhận túi kho báu.</li><li>Dùng kim loại mới để mạnh hơn rồi sang chặng sau.</li></ul></div>
+<div class="card"><h3>Mười phút đầu tiên</h3><ul><li>Chặt gỗ, chế bàn chế tạo, cuốc đá và kiếm đá.</li><li>Tìm sắt trong rương hầm ngục hoặc từ Golem sắt ở làng, vì quặng sắt còn bị khóa.</li><li>Chế Iron Remote: 4 thỏi sắt và 1 bông hoa.</li><li>Mang nhiều thức ăn rồi đối mặt Cự Nhân Sắt.</li></ul></div>
+<div class="card"><h3>Khi lạc đường</h3><p>Mở chương Con đường chính và nhìn nút đang phát sáng màu xanh: đó là bước kế tiếp của bạn. Sách Bách Khoa Armageddon trong hành trang giữ công thức đầy đủ.</p></div>
+</div>`;
+const GX=170,GY=132,PAD=34;
+let chap="main",fresh=true;
+function layout(id){
+  const nodes=[],edges=[];
+  if(id==="main"){
+    const W=$("canvas").clientWidth||360, cols=Math.max(2,Math.min(6,Math.floor((W-PAD)/GX))), c0=cur();
+    S.forEach((s,i)=>{const r=Math.floor(i/cols),k=i%cols;
+      nodes.push({t:"m",i,x:PAD+(r%2?cols-1-k:k)*GX,y:PAD+r*GY,cls:done.has(i)?"done":i===c0?"now":"lock",nm:s[0],sb:s[3],ic:pic(A[i][0])||s[2]});
+      if(i)edges.push([i-1,i,done.has(i)?"done":done.has(i-1)?"now":"lock"]);});
+  }else{
+    const list=SN.filter(n=>n.ch===id), reqs=[...new Set(list.map(n=>n.req))].sort((a,b)=>a-b), ch=CH.find(c=>c.id===id);
+    reqs.forEach((q,c)=>{
+      nodes.push({t:"g",i:q,id:"g"+q,x:PAD+c*GX,y:PAD,cls:"gate "+(done.has(q)?"done":"lock"),nm:S[q][0],sb:"cổng mở",ic:pic(A[q][0])||S[q][2]});
+      if(c)edges.push(["g"+reqs[c-1],"g"+q,done.has(q)?"done":"lock"]);
+      list.filter(n=>n.req===q).forEach((n,r)=>{
+        const sd=sdone.has(n.name), un=done.has(q), id2="s"+n.name;
+        nodes.push({t:"s",n,id:id2,x:PAD+c*GX,y:PAD+(r+1)*GY,cls:sd?"done":un?"open":"lock",nm:n.name,sb:n.group,ic:ch.e,d3:!!n.key});
+        edges.push(["g"+q,id2,sd?"done":un?"now":"lock"]);});});
+  }
+  return{nodes,edges};
+}
+function render(){
+  const c=CH.find(x=>x.id===chap)||CH[0];
+  document.documentElement.style.setProperty("--ac",c.c);
+  // tabs
+  const cnt=id=>id==="main"?[done.size,S.length]:[SN.filter(n=>n.ch===id&&sdone.has(n.name)).length,SN.filter(n=>n.ch===id).length];
+  $("tabs").innerHTML=`<button class="tab ${chap==="guide"?"on":""}" style="--c:#58cbff" data-c="guide"><span class="e">📜</span><b>Hướng dẫn</b><em></em></button><div class="tabs-h">Các chương</div>`+
+    CH.map(x=>{const[a,b]=cnt(x.id);return `<button class="tab ${chap===x.id?"on":""}" style="--c:${x.c}" data-c="${x.id}"><span class="e">${x.e}</span><b>${x.name}</b><em>${a}/${b}</em></button>`}).join("");
+  const n=done.size;
+  $("fill").style.width=(n/S.length*100)+"%";
+  $("pct").textContent=n===S.length?"Vương quốc đã được giải phóng!":`${n} trên ${S.length} kẻ gác cổng đã ngã xuống`;
+  if(chap==="guide"){
+    $("ctitle").textContent="Hướng dẫn cho người mới"; $("cdesc").textContent="Đọc một lần là đủ để không lạc đường.";
+    $("tree").style.cssText="";$("edges").innerHTML="";$("nodes").innerHTML=GUIDE;return;
+  }
+  $("ctitle").textContent=c.name; $("cdesc").textContent=c.d+(c.id!=="main"?" Mỗi cột mở sau khi bạn hạ kẻ gác cổng ở đầu cột.":"");
+  const L=layout(chap), pos={}; let w=0,h=0;
+  L.nodes.forEach(o=>{pos[o.t==="m"?o.i:o.id]=o;w=Math.max(w,o.x+140);h=Math.max(h,o.y+140)});
+  w+=PAD;h+=PAD;
+  $("tree").style.cssText=`width:${w}px;height:${h}px`;
+  const E=$("edges"); E.setAttribute("width",w);E.setAttribute("height",h);
+  E.innerHTML=L.edges.map(([a,b,st])=>{
+    const p=pos[a],q=pos[b],ax=p.x+70,ay=p.y+38,bx=q.x+70,by=q.y+38,dx=(bx-ax)/2,dy=(by-ay)/2;
+    const d=ay===by||ax===bx?`M${ax} ${ay}L${bx} ${by}`:Math.abs(bx-ax)>=Math.abs(by-ay)?`M${ax} ${ay}C${ax+dx} ${ay} ${bx-dx} ${by} ${bx} ${by}`:`M${ax} ${ay}C${ax} ${ay+dy} ${bx} ${by-dy} ${bx} ${by}`;
+    return `<path class="ed ${st}" d="${d}"/>`}).join("");
+  $("nodes").innerHTML=L.nodes.map((o,k)=>`<button class="node ${o.cls}" style="left:${o.x}px;top:${o.y}px" data-k="${k}" aria-label="${o.nm}"><span class="tile">${o.d3?'<span class="d3">3D</span>':""}${o.ic.startsWith("<img")?o.ic:o.ic}</span><span class="nm">${o.nm}</span><span class="sb">${o.sb}</span></button>`).join("");
+  $("nodes").onclick=e=>{const b=e.target.closest(".node");if(!b)return;const o=L.nodes[+b.dataset.k];
+    if(o.t==="m"||o.t==="g")open_(o.i);else openInfo(o.n)};
+  if(fresh){fresh=false;const cv=$("canvas"),t=chap==="main"?L.nodes.find(o=>o.cls==="now")||L.nodes[0]:L.nodes[0];
+    cv.scrollTo({left:Math.max(0,t.x-cv.clientWidth/2+70),top:Math.max(0,t.y-cv.clientHeight/2+60)})}
+}
+function openInfo(n){
+  if(VW){VW.destroy();VW=null}
+  const k=n.key,ok=done.has(n.req),m=sdone.has(n.name);
+  $("dt").textContent=n.name;$("ds").textContent=n.group+", cuộc săn ngoài đường lớn";$("dimg").hidden=true;
+  $("dbody").innerHTML=`${k?`<div class="v3d"><div id="vhost"></div><div class="vtabs" id="vtabs"></div><small>Kéo để xoay, cuộn chuột để phóng to. Mô hình lấy thẳng từ mod.</small></div>`:`<p class="lore">Chưa có mô hình 3D cho kẻ này.</p>`}
+    <h4>Điều kiện</h4><p>${ok?"Đã mở, hãy chuẩn bị kỹ.":"Mở sau khi hạ "+S[n.req][0]+"."} Độ khó là ước lượng.</p>
+    <div class="act"><button id="mark">${m?"Hủy dấu hạ gục":"Đánh dấu đã hạ"}</button><button class="ghost" id="close">Đóng</button></div>`;
+  $("mark").onclick=()=>{m?sdone.delete(n.name):sdone.add(n.name);ssave();render();$("dlg").close()};
+  $("close").onclick=()=>$("dlg").close();$("dlg").showModal();if(k)loadSide(k);
+}
+$("tabs").addEventListener("click",e=>{const b=e.target.closest(".tab");if(!b)return;chap=b.dataset.c;fresh=true;try{history.replaceState(null,"","#"+chap)}catch(x){}render();$("canvas").scrollTo(0,0)});
 $("dlg").addEventListener("close",()=>{if(VW){VW.destroy();VW=null}});
 $("dlg").addEventListener("click",e=>{if(e.target===$("dlg"))$("dlg").close()});
-$("reset").onclick=()=>{if(confirm("Xóa toàn bộ tiến độ đã đánh dấu?")){done=new Set();save();render()}};
+$("reset").onclick=()=>{if(confirm("Xóa toàn bộ tiến độ đã đánh dấu?")){done=new Set();sdone=new Set();save();ssave();render()}};
+const cv=$("canvas");let pd=null;
+cv.addEventListener("pointerdown",e=>{if(e.pointerType!=="mouse"||e.target.closest(".node"))return;pd={x:e.clientX,y:e.clientY,l:cv.scrollLeft,t:cv.scrollTop};cv.setPointerCapture(e.pointerId);cv.classList.add("grab")});
+cv.addEventListener("pointermove",e=>{if(pd){cv.scrollLeft=pd.l-(e.clientX-pd.x);cv.scrollTop=pd.t-(e.clientY-pd.y)}});
+cv.addEventListener("pointerup",()=>{pd=null;cv.classList.remove("grab")});
+let rz=0;addEventListener("resize",()=>{cancelAnimationFrame(rz);rz=requestAnimationFrame(()=>{if(chap==="main")render()})});
+const hh=location.hash.slice(1);if(hh==="guide"||CH.some(x=>x.id===hh))chap=hh;else if(!done.size&&!sdone.size)chap="guide";
 render();
 </script>
 </body>
